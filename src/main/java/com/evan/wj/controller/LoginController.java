@@ -10,9 +10,20 @@ import com.evan.wj.pojo.User;
 import java.util.Objects;
 
 @Controller
+@CrossOrigin(
+        origins = "*",
+        allowedHeaders = "*",
+        allowCredentials = "true",
+        methods = {
+                RequestMethod.GET,
+                RequestMethod.POST,
+                RequestMethod.PUT,
+                RequestMethod.DELETE,
+                RequestMethod.OPTIONS,
+                RequestMethod.HEAD
+        }
+)
 public class LoginController {
-
-    @CrossOrigin
     @PostMapping(value = "/api/login")
     @ResponseBody
     public Result login(@RequestBody User requestUser) {
