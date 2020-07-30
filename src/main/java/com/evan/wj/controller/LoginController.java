@@ -1,6 +1,7 @@
 package com.evan.wj.controller;
 
 import com.evan.wj.result.Result;
+import org.apache.catalina.connector.Response;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
@@ -9,20 +10,8 @@ import com.evan.wj.pojo.User;
 
 import java.util.Objects;
 
-@Controller
-@CrossOrigin(
-        origins = "*",
-        allowedHeaders = "*",
-        allowCredentials = "true",
-        methods = {
-                RequestMethod.GET,
-                RequestMethod.POST,
-                RequestMethod.PUT,
-                RequestMethod.DELETE,
-                RequestMethod.OPTIONS,
-                RequestMethod.HEAD
-        }
-)
+@RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LoginController {
     @PostMapping(value = "/api/login")
     @ResponseBody
