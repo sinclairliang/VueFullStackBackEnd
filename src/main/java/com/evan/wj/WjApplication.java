@@ -9,5 +9,6 @@ public class WjApplication {
     public static void main(String[] args) {
         SpringApplication.run(WjApplication.class, args);
     }
-
 }
+
+
