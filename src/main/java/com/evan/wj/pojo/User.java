@@ -1,6 +1,7 @@
 package com.evan.wj.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
@@ -14,7 +15,9 @@ public class User {
     @Column(name = "id")
     int id;
 
+    @JsonProperty("username")
     String username;
+    @JsonProperty("password")
     String password;
 
     public int getId() {

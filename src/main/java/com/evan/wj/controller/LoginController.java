@@ -4,8 +4,8 @@ import com.evan.wj.pojo.User;
 import com.evan.wj.result.Result;
 import com.evan.wj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
@@ -15,7 +15,7 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin("http://localhost:8000")
     @PostMapping(value = "/api/login")
     @ResponseBody
     public Result login(@RequestBody User requestUser) {
@@ -23,7 +23,7 @@ public class LoginController {
         username = HtmlUtils.htmlEscape(username);
 
         User user = userService.get(username, requestUser.getPassword());
-        if (null == user) {
+        if (user == null) {
             return new Result(400);
         } else {
             return new Result(200);
