@@ -1,12 +1,20 @@
 package com.evan.wj.pojo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user")
+@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
 
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     int id;
-//    @JsonProperty("username")
+
     String username;
-//    @JsonProperty("password")
     String password;
 
     public int getId() {
@@ -33,4 +41,3 @@ public class User {
         this.password = password;
     }
 }
-
