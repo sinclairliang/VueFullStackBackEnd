@@ -1,6 +1,8 @@
 package com.evan.wj.controller;
 
 import com.evan.wj.result.Result;
+import com.evan.wj.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ import java.util.Objects;
 
 @Controller
 public class LoginController {
+    @Autowired
+    UserService userService;
+
     @CrossOrigin
     @PostMapping(value = "/api/login")
     @ResponseBody
@@ -21,7 +26,8 @@ public class LoginController {
         String username = requestUser.getUsername();
         username = HtmlUtils.htmlEscape(username);
         System.out.println(username);
-        if (!Objects.equals("admin", username) || !Objects.equals("123456", requestUser.getPassword())) {
+        User user = userService.get(username, requestUser.getPassword());
+        if (user == null) {
             String message = "Login Error";
             System.out.println("test");
             return new Result(400);
