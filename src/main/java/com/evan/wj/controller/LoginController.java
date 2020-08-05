@@ -4,15 +4,10 @@ import com.evan.wj.result.Result;
 import com.evan.wj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
 import com.evan.wj.pojo.User;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
-import java.util.Objects;
 
 @Controller
 public class LoginController {
