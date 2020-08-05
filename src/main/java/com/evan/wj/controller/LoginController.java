@@ -9,17 +9,19 @@ import com.evan.wj.pojo.User;
 
 import java.util.Objects;
 
-@RestController
+@RestController()
+@RequestMapping("/api")
 public class LoginController {
     @CrossOrigin
-    @RequestMapping("api/login")
+    @RequestMapping("/login")
     public Result login(@RequestBody User user) {
-        String username = HtmlUtils.htmlEscape(user.getUsername());
-        if (!"admin".equals(username) || !"123456".equals(user.getPassword())) {
-            return new Result(400);
-        } else {
-            return new Result(200);
-        }
+        return new Result(200);
+//        String username = HtmlUtils.htmlEscape(user.getUsername());
+//        if (!"admin".equals(username) || !"123456".equals(user.getPassword())) {
+//            return new Result(400);
+//        } else {
+//            return new Result(200);
+//        }
     }
 }
 
