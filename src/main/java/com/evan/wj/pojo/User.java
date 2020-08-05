@@ -1,8 +1,12 @@
 package com.evan.wj.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
     int id;
+//    @JsonProperty("username")
     String username;
+//    @JsonProperty("password")
     String password;
 
     public int getId() {
