@@ -21,7 +21,6 @@ public class LoginController {
     public Result login(User requestUser, HttpSession session) {
         String username = requestUser.getUsername();
         username = HtmlUtils.htmlEscape(username);
-//        System.out.println(username);
         User user = userService.get(username, requestUser.getPassword());
         if (user == null) {
             String message = "Login Error";
