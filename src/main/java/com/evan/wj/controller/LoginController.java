@@ -19,6 +19,7 @@ public class LoginController {
     @PostMapping(value = "/api/login")
     @ResponseBody
     public Result login(User requestUser, HttpSession session) {
+        // Better to use User object than RequestBody here, tested;
         String username = requestUser.getUsername();
         username = HtmlUtils.htmlEscape(username);
         User user = userService.get(username, requestUser.getPassword());
