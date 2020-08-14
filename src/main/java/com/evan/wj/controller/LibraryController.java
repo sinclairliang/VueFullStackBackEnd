@@ -12,22 +12,26 @@ public class LibraryController {
     @Autowired
     BookService bookService;
 
+    @CrossOrigin
     @GetMapping("/api/books")
     public List<Book> list() throws Exception {
         return bookService.list();
     }
 
+    @CrossOrigin
     @PostMapping("/api/books")
     public Book addOrUpdate(@RequestBody Book book) throws Exception {
         bookService.addOrUpdate(book);
         return book;
     }
 
+    @CrossOrigin
     @PostMapping("/api/delete")
     public void delete(@RequestBody Book book) throws Exception {
         bookService.deleteById(book.getId());
     }
 
+    @CrossOrigin
     @GetMapping("/api/category/{cid}/books")
     public List<Book> listByCategory(@PathVariable int cid) throws Exception {
         if (cid != 0) {
