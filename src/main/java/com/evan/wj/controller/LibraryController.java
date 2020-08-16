@@ -41,5 +41,16 @@ public class LibraryController {
         }
     }
 
+    @CrossOrigin
+    @GetMapping("/api/search")
+    public List<Book> searchResult(@RequestParam("keywords") String keywords) {
+        if ("".equals(keywords)) {
+            // return all books if empty;
+            return bookService.list();
+        } else {
+            return bookService.Search(keywords);
+        }
+    }
+
 
 }
