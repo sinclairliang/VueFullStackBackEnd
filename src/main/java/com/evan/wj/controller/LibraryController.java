@@ -52,5 +52,10 @@ public class LibraryController {
         }
     }
 
-
+// TODO: Upload Covers;
+//    @CrossOrigin
+//    @PostMapping("/api/covers")
+//    public String coversUpload(MultipartFile file) throws Exception {
+//
+//    }
 }
