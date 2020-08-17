@@ -1,8 +1,8 @@
 package com.evan.wj.service;
 
+import com.evan.wj.dao.BookDAO;
 import com.evan.wj.pojo.Book;
 import com.evan.wj.pojo.Category;
-import com.evan.wj.dao.BookDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -32,9 +32,5 @@ public class BookService {
     public List<Book> listByCategory(int cid) {
         Category category = categoryService.get(cid);
         return bookDAO.findAllByCategory(category);
-    }
-
-    public List<Book> Search(String keywords) {
-        return bookDAO.findAllByTitleLikeOrAuthorLike('%' + keywords + '%', '%' + keywords + '%');
     }
 }
