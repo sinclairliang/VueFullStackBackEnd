@@ -31,5 +31,13 @@ public class LoginController {
             return new Result(200);
         }
     }
+
+    @CrossOrigin
+    @PostMapping("/api/register")
+    public Result register(User user) {
+        String username = user.getUsername();
+        String password = user.getPassword();
+
+    }
 }
 
