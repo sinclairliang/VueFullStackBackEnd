@@ -9,4 +9,11 @@ public class WJRealm extends AuthorizingRealm {
     private AdminPermissionService adminPermissionService;
     @Autowired
     private AdminRoleService adminRoleService;
+
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+		String username = principalCollection.getPrimaryPrinciple().toString();
+		Set<String> permissions = adminPermissionService.listPermissionURLsByUser(username);
+
+	}
 }
