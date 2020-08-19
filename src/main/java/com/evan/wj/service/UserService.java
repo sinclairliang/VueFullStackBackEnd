@@ -11,9 +11,8 @@ public class UserService {
     UserDAO userDAO;
 
     public boolean isExist(String username) {
-        User user = getByName(username);
-
-        return user != null;
+        User user = userDAO.findByUsername(username);
+        return null != user;
     }
 
     public User getByName(String username) {

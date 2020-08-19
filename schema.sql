@@ -30,3 +30,18 @@ CREATE TABLE `category`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`
+(
+    `id`       int(11)                                              NOT NULL AUTO_INCREMENT,
+    `username` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    `password` varchar(255)                                            DEFAULT NULL,
+    `salt`     varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 110
+  DEFAULT CHARSET = utf8;

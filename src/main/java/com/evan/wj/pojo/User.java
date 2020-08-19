@@ -45,4 +45,8 @@ public class User {
     public void setSalt(String salt) {
         this.salt = salt;
     }
+
+    public String getSalt() {
+        return salt;
+    }
 }
