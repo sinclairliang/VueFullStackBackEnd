@@ -10,10 +10,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ObjectUtils;
-import org.apache.shiro.realm.AuthorizingRealm;
-
-import java.util.Set;
 
 
 public class WJRealm extends AuthorizingRealm {

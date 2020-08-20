@@ -1,7 +1,5 @@
 package com.evan.wj.result;
 
-import com.evan.wj.result.ResultCode;
-
 public class ResultFactory {
 
     public static Result buildSuccessResult(Object data) {

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -28,7 +27,6 @@ public class LoginController {
     public Result login(User requestUser) {
         // Better to use User object than RequestBody here, tested;
         String username = requestUser.getUsername();
-        System.out.println("USER ::: " + username);
         username = HtmlUtils.htmlEscape(username);
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, requestUser.getPassword());
