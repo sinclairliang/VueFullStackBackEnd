@@ -64,5 +64,15 @@ public class LoginController {
 
         return ResultFactory.buildSuccessResult(user);
     }
+
+    @CrossOrigin
+    @ResponseBody
+    @GetMapping(value = "api/logout")
+    public Result logout() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        String message = "Logged Out";
+        return ResultFactory.buildSuccessResult(message);
+    }
 }
 
