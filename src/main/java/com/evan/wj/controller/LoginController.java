@@ -22,6 +22,30 @@ public class LoginController {
     UserService userService;
 
     @CrossOrigin
+    @PostMapping(value = "/api/register")
+    @ResponseBody
+    public Result register(User user) {
+        String username = user.getUsername();
+        String password = user.getPassword();
+        username = HtmlUtils.htmlEscape(username);
+        user.setUsername(username);
+        boolean exist = userService.isExist(username);
+
+        if (exist) {
+            String message = "User is already registered";
+            return ResultFactory.buildFailResult(message);
+        }
+        String salt = new SecureRandomNumberGenerator().nextBytes().toString();
+        int times = 2;
+        String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
+        user.setSalt(salt);
+        user.setPassword(encodedPassword);
+        userService.add(user);
+
+        return ResultFactory.buildSuccessResult(user);
+    }
+
+    @CrossOrigin
     @PostMapping(value = "/api/login")
     @ResponseBody
     public Result login(User requestUser) {
@@ -40,39 +64,21 @@ public class LoginController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/api/register")
     @ResponseBody
-    public Result register(User user) {
-        String username = user.getUsername();
-        String password = user.getPassword();
-        username = HtmlUtils.htmlEscape(username);
-        user.setUsername(username);
-        boolean exist = userService.isExist(username);
-
-        if (exist) {
-            String message = "User is already registered";
-            return ResultFactory.buildFailResult(message);
-        }
-
-        System.out.println("\n::: HERE ::: \n");
-        String salt = new SecureRandomNumberGenerator().nextBytes().toString();
-        int times = 2;
-        String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
-        user.setSalt(salt);
-        user.setPassword(encodedPassword);
-        userService.add(user);
-
-        return ResultFactory.buildSuccessResult(user);
+    @GetMapping(value = "/api/authentication")
+    public String authentication() {
+        return "Successful";
     }
 
     @CrossOrigin
     @ResponseBody
-    @GetMapping(value = "api/logout")
+    @GetMapping(value = "/api/logout")
     public Result logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         String message = "Logged Out";
         return ResultFactory.buildSuccessResult(message);
     }
+
 }
 
