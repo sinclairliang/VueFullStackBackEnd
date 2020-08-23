@@ -23,7 +23,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
 
         Subject subject = SecurityUtils.getSubject();
-        if (!subject.isAuthenticated()) {
+        if (!subject.isAuthenticated() && !subject.isRemembered()) {
+            System.out.println(subject.isRemembered());
+            System.out.println(subject.isAuthenticated());
             return false;
         }
         return true;
