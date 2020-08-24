@@ -110,3 +110,33 @@ CREATE TABLE `admin_role_permission`
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 140
   DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for admin_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_permission`;
+CREATE TABLE `admin_permission`
+(
+    `id`    int(11) NOT NULL AUTO_INCREMENT,
+    `name`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `desc_` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `url`   varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 4
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for admin_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_role_menu`;
+CREATE TABLE `admin_role_menu`
+(
+    `id`  int(11) NOT NULL AUTO_INCREMENT,
+    `rid` int(11) DEFAULT NULL,
+    `mid` int(11) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 194
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_general_ci;

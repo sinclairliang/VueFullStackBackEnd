@@ -1,19 +1,18 @@
 package com.evan.wj.pojo;
 
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "admin_role_menu")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
-public class AdminRoleMenu {
+public class AdminRolePermission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    // menu id;
-    private int mid;
+    // permission id;
+    private int pid;
     private int rid;
 
     public int getId() {
@@ -24,12 +23,12 @@ public class AdminRoleMenu {
         this.id = id;
     }
 
-    public int getMid() {
-        return mid;
+    public int getPid() {
+        return pid;
     }
 
-    public void setMid(int mid) {
-        this.mid = mid;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public int getRid() {
