@@ -10,7 +10,6 @@ import org.apache.shiro.subject.Subject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
     // Tells the program how to handle errors;
