@@ -45,3 +45,21 @@ CREATE TABLE `user`
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 110
   DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for admin_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_menu`;
+CREATE TABLE `admin_menu`
+(
+    `id`        int(11) NOT NULL AUTO_INCREMENT,
+    `path`      varchar(64)                                            DEFAULT NULL,
+    `name`      varchar(64)                                            DEFAULT NULL,
+    `icon_cls`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `component` varchar(64)                                            DEFAULT NULL,
+    `parent_id` int(11)                                                DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 17
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_general_ci;
