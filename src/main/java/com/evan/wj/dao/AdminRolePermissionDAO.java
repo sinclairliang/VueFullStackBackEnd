@@ -1,4 +1,12 @@
 package com.evan.wj.dao;
 
-public interface AdminRolePermissionDAO {
+import com.evan.wj.pojo.AdminRolePermission;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface AdminRolePermissionDAO extends JpaRepository<AdminRolePermission, Integer> {
+    List<AdminRolePermission> findAllByRid(int rid);
+    List<AdminRolePermission> findByRid(List<Integer> rids);
+    void deleteAllByRid(int rid);
 }
