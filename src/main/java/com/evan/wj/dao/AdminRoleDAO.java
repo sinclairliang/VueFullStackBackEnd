@@ -1,4 +1,8 @@
 package com.evan.wj.dao;
 
-public interface AdminRoleDAO {
+import com.evan.wj.pojo.AdminRole;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AdminRoleDAO extends JpaRepository<AdminRole, Integer> {
+    AdminRole findById(int id);
 }
