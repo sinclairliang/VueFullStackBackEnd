@@ -28,7 +28,7 @@ public class AdminRoleService {
         for (int i = 0; i < allRoles.size(); i++) {
             AdminRole role = allRoles.get(i);
             perms = adminPermissionService.listPermsByRoleId(role.getId());
-            menus = adminMenuService.getMenuByRoleId(role.getId());
+            menus = adminMenuService.getMenusByRoleId(role.getId());
             role.setPerms(perms);
             role.setMenus(menus);
         }

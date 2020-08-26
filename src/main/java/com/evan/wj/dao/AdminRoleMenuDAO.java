@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AdminRoleMenuDAO {
     List<AdminRoleMenu> findAllByRid(int rid);
+    List<AdminRoleMenu> findAllByRid(List<Integer> rids);
 }
