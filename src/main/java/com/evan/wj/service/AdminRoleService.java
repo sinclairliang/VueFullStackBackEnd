@@ -4,10 +4,12 @@ import com.evan.wj.dao.AdminRoleDAO;
 import com.evan.wj.pojo.AdminMenu;
 import com.evan.wj.pojo.AdminPermission;
 import com.evan.wj.pojo.AdminRole;
+import com.evan.wj.pojo.AdminUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdminRoleService {
     @Autowired
@@ -35,9 +37,19 @@ public class AdminRoleService {
         return allRoles;
 
     }
+
+    public List<AdminRole> listRolesByUser(String username) {
+        int uid = userService.getByName(username).getId();
+        List<Integer> rids = adminUserRoleService
+                .listAllByUid(uid)
+                .stream()
+                .map(AdminUserRole::getId)
+                .collect(Collectors.toList());
+
+        return adminRoleDAO.findAllById(rids);
+    }
 //    public List<AdminRole> findAll() {}
 //    public void addOrUpdate(AdminRole adminRole) {}
-//    public List<AdminRole> listRolesByUser(String username) {}
 //    public AdminRole updateRoleStatus(AdminRole role) {}
 //    public void editRole(@RequestBody AdminRole role)  {}
 }

@@ -8,13 +8,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "admin_role")
-
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class AdminRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
     private String name;
     private boolean enabled;
 
