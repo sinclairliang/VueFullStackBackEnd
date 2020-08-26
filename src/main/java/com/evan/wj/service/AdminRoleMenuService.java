@@ -21,7 +21,7 @@ public class AdminRoleMenuService {
     }
 
     public List<AdminRoleMenu> findAllByRid(List<Integer> rids) {
-        return adminRoleMenuDAO.findAllByRid(rids);
+        return adminRoleMenuDAO.findAllByRidIn(rids);
     }
 
     public void save(AdminRoleMenu roleMenu) {
