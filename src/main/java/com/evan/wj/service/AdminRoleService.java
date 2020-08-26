@@ -22,6 +22,8 @@ public class AdminRoleService {
     AdminPermissionService adminPermissionService;
     @Autowired
     AdminMenuService adminMenuService;
+    @Autowired
+    AdminRolePermissionService adminRolePermissionService;
 
     public List<AdminRole> listWithPermsAndMenus() {
         List<AdminRole> allRoles = adminRoleDAO.findAll();
@@ -48,8 +50,22 @@ public class AdminRoleService {
 
         return adminRoleDAO.findAllById(rids);
     }
-//    public List<AdminRole> findAll() {}
-//    public void addOrUpdate(AdminRole adminRole) {}
-//    public AdminRole updateRoleStatus(AdminRole role) {}
-//    public void editRole(@RequestBody AdminRole role)  {}
+
+    public List<AdminRole> findAll() {
+        return adminRoleDAO.findAll();
+    }
+
+    public void addOrUpdate(AdminRole adminRole) {
+        adminRoleDAO.save(adminRole);
+    }
+
+    public AdminRole updateRoleStatus(AdminRole role) {
+        AdminRole roleInDB = adminRoleDAO.findById(role.getId());
+        roleInDB.setEnabled(role.isEnabled());
+        return adminRoleDAO.save(roleInDB);
+    }
+    public void editRole(@RequestBody AdminRole role)  {
+        adminRoleDAO.save(role);
+        adminRolePermissionService.savePermChanges(role.getId(), role.getPerms());
+    }
 }

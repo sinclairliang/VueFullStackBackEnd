@@ -51,10 +51,9 @@ public class AdminPermissionService {
                 .map(AdminRolePermission::getPid)
                 .collect(Collectors.toList());
 
-        List<AdminPermission> perms =  adminPermissionDAO.findAllById(pids);
+        List<AdminPermission> perms = adminPermissionDAO.findAllById(pids);
         Set<String> URLs = perms.stream().map(AdminPermission::getUrl).collect(Collectors.toSet());
         return URLs;
     }
-
 
 }
