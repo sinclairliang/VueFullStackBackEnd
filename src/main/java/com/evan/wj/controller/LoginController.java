@@ -22,7 +22,7 @@ public class LoginController {
     UserService userService;
 
     @CrossOrigin
-    @PostMapping(value = "/api/register")
+    @PostMapping("/api/register")
     @ResponseBody
     public Result register(User user) {
         String username = user.getUsername();
@@ -46,7 +46,7 @@ public class LoginController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/api/login")
+    @PostMapping("/api/login")
     @ResponseBody
     public Result login(User requestUser) {
         // Better to use User object than RequestBody here, tested;
@@ -66,14 +66,14 @@ public class LoginController {
 
     @CrossOrigin
     @ResponseBody
-    @GetMapping(value = "/api/authentication")
+    @GetMapping("/api/authentication")
     public String authentication() {
         return "Successful";
     }
 
     @CrossOrigin
     @ResponseBody
-    @GetMapping(value = "/api/logout")
+    @GetMapping("/api/logout")
     public Result logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
