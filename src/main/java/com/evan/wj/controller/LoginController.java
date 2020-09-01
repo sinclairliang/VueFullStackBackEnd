@@ -25,6 +25,9 @@ public class LoginController {
     @PostMapping(value = "/api/login")
     @ResponseBody
     public Result login(User requestUser) {
+        System.out.println("================");
+        System.out.println(requestUser.getUsername());
+        System.out.println("================");
         // Better to use User object than RequestBody here, tested;
         String username = requestUser.getUsername();
         username = HtmlUtils.htmlEscape(username);
@@ -54,7 +57,6 @@ public class LoginController {
             return ResultFactory.buildFailResult(message);
         }
 
-        System.out.println("\n::: HERE ::: \n");
         String salt = new SecureRandomNumberGenerator().nextBytes().toString();
         int times = 2;
         String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
@@ -63,6 +65,16 @@ public class LoginController {
         userService.add(user);
 
         return ResultFactory.buildSuccessResult(user);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/api/logout")
+    @ResponseBody
+    public Result logout() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        String message = "Logged out";
+        return ResultFactory.buildSuccessResult(message);
     }
 }
 
