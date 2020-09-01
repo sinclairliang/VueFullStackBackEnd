@@ -45,3 +45,98 @@ CREATE TABLE `user`
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 110
   DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for admin_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_menu`;
+CREATE TABLE `admin_menu`
+(
+    `id`        int(11) NOT NULL AUTO_INCREMENT,
+    `path`      varchar(64)                                            DEFAULT NULL,
+    `name`      varchar(64)                                            DEFAULT NULL,
+    `icon_cls`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `component` varchar(64)                                            DEFAULT NULL,
+    `parent_id` int(11)                                                DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 17
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_general_ci;
+
+-- ----------------------------
+-- Table structure for admin_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_user_role`;
+CREATE TABLE `admin_user_role`
+(
+    `id`  int(11) NOT NULL AUTO_INCREMENT,
+    `uid` int(11) DEFAULT NULL,
+    `rid` int(11) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `fk_operator_role_operator_1` (`uid`),
+    KEY `fk_operator_role_role_1` (`rid`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 68
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for admin_role
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_role`;
+CREATE TABLE `admin_role`
+(
+    `id`      int(11) NOT NULL AUTO_INCREMENT,
+    `name`    varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `name_zh` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `enabled` tinyint(1)                                              DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 10
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for admin_role_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_role_permission`;
+CREATE TABLE `admin_role_permission`
+(
+    `id`  int(20) NOT NULL AUTO_INCREMENT,
+    `rid` int(20) DEFAULT NULL,
+    `pid` int(20) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `fk_role_permission_role_1` (`rid`),
+    KEY `fk_role_permission_permission_1` (`pid`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 140
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for admin_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_permission`;
+CREATE TABLE `admin_permission`
+(
+    `id`    int(11) NOT NULL AUTO_INCREMENT,
+    `name`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `desc_` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `url`   varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 4
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Table structure for admin_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_role_menu`;
+CREATE TABLE `admin_role_menu`
+(
+    `id`  int(11) NOT NULL AUTO_INCREMENT,
+    `rid` int(11) DEFAULT NULL,
+    `mid` int(11) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 194
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_general_ci;
