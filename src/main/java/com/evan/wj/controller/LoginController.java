@@ -22,9 +22,10 @@ public class LoginController {
     UserService userService;
 
     @CrossOrigin
+
     @PostMapping("/api/register")
     @ResponseBody
-    public Result register(User user) {
+    public Result register(@RequestBody User user) {
         String username = user.getUsername();
         String password = user.getPassword();
         username = HtmlUtils.htmlEscape(username);
