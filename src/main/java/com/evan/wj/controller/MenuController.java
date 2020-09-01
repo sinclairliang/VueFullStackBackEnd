@@ -15,6 +15,7 @@ public class MenuController {
 
     @GetMapping("/api/menu")
     public List<AdminMenu> menu() {
+        System.out.println("Here Menu");
         return adminMenuService.getMenusByCurrentUser();
     }
 

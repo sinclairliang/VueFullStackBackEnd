@@ -9,14 +9,11 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.apache.shiro.subject.Subject;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
-    // Tells the program how to handle errors;
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler) throws Exception {
         HttpSession session = httpServletRequest.getSession();
@@ -38,7 +35,6 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        Subject subject = SecurityUtils.getSubject();
         if (!subject.isAuthenticated() && !subject.isRemembered()) {
             return false;
         }
