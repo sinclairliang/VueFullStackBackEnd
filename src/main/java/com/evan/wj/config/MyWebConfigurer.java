@@ -16,6 +16,16 @@ public class MyWebConfigurer implements WebMvcConfigurer {
         return new LoginInterceptor();
     }
 
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowCredentials(true)
+//                .allowedOrigins("http://localhost:8080")
+//                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+//                .allowedHeaders("*")
+//                .maxAge(3600);
+//    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(getLoginInterceptor())

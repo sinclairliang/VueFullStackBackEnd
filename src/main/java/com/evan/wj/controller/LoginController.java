@@ -80,7 +80,6 @@ public class LoginController {
     public String authentication() {
         System.out.println("Auth");
         return "200";
-//        return ResultFactory.buildSuccessResult("200");
     }
 }
 
