@@ -1,8 +1,9 @@
 package com.evan.wj.interceptor;
 
-
 import com.evan.wj.pojo.User;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         String uri = httpServletRequest.getRequestURI();
         uri = StringUtils.remove(uri, contextPath + "/");
         String page = uri;
+        Subject subject = SecurityUtils.getSubject();
+        if (!subject.isAuthenticated() && !subject.isRemembered()) {
+            return false;
+        }
 
         if (beginWith(page, requireAuthPages)) {
             User user = (User) session.getAttribute("user");

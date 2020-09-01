@@ -25,11 +25,11 @@ public class LoginController {
     @PostMapping("/api/login")
     @ResponseBody
     public Result login(@RequestBody User requestUser) {
-        System.out.println(requestUser.getUsername());
         String username = requestUser.getUsername();
         username = HtmlUtils.htmlEscape(username);
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, requestUser.getPassword());
+        usernamePasswordToken.setRememberMe(true);
         try {
             subject.login(usernamePasswordToken);
             return ResultFactory.buildSuccessResult(username);
@@ -72,6 +72,15 @@ public class LoginController {
         subject.logout();
         String message = "Logged out";
         return ResultFactory.buildSuccessResult(message);
+    }
+
+    @CrossOrigin
+    @GetMapping("/api/authentication")
+    @ResponseBody
+    public String authentication() {
+        System.out.println("Auth");
+        return "200";
+//        return ResultFactory.buildSuccessResult("200");
     }
 }
 
