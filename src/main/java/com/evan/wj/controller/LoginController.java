@@ -22,13 +22,10 @@ public class LoginController {
     UserService userService;
 
     @CrossOrigin
-    @PostMapping(value = "/api/login")
+    @PostMapping("/api/login")
     @ResponseBody
-    public Result login(User requestUser) {
-        System.out.println("================");
+    public Result login(@RequestBody User requestUser) {
         System.out.println(requestUser.getUsername());
-        System.out.println("================");
-        // Better to use User object than RequestBody here, tested;
         String username = requestUser.getUsername();
         username = HtmlUtils.htmlEscape(username);
         Subject subject = SecurityUtils.getSubject();
@@ -43,9 +40,9 @@ public class LoginController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/api/register")
+    @PostMapping("/api/register")
     @ResponseBody
-    public Result register(User user) {
+    public Result register(@RequestBody User user) {
         String username = user.getUsername();
         String password = user.getPassword();
         username = HtmlUtils.htmlEscape(username);
@@ -68,7 +65,7 @@ public class LoginController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/api/logout")
+    @GetMapping("/api/logout")
     @ResponseBody
     public Result logout() {
         Subject subject = SecurityUtils.getSubject();
