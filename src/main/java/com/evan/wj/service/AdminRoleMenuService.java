@@ -21,24 +21,25 @@ public class AdminRoleMenuService {
     }
 
     public List<AdminRoleMenu> findAllByRid(List<Integer> rids) {
-        return adminRoleMenuDAO.findAllByRidIn(rids);
+        return adminRoleMenuDAO.findAllByRid(rids);
     }
 
-    public void save(AdminRoleMenu roleMenu) {
-        adminRoleMenuDAO.save(roleMenu);
+    public void save(AdminRoleMenu rm) {
+        adminRoleMenuDAO.save(rm);
     }
 
     @Modifying
     @Transactional
     public void updateRoleMenu(int rid, Map<String, List<Integer>> menusIds) {
-        adminRoleMenuDAO.deleteByRid(rid);
-        List<AdminRoleMenu> roleMenus = new ArrayList<>();
+        adminRoleMenuDAO.deleteAllByRid(rid);
+        List<AdminRoleMenu> rms = new ArrayList<>();
         for (Integer mid : menusIds.get("menusIds")) {
-            AdminRoleMenu roleMenu = new AdminRoleMenu();
-            roleMenu.setMid(mid);
-            roleMenu.setRid(rid);
-            roleMenus.add(roleMenu);
+            AdminRoleMenu rm = new AdminRoleMenu();
+            rm.setMid(mid);
+            rm.setRid(rid);
+            rms.add(rm);
         }
-        adminRoleMenuDAO.saveAll(roleMenus);
+
+        adminRoleMenuDAO.saveAll(rms);
     }
 }

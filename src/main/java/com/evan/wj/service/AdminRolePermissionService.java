@@ -22,14 +22,13 @@ public class AdminRolePermissionService {
     @Transactional
     public void savePermChanges(int rid, List<AdminPermission> perms) {
         adminRolePermissionDAO.deleteAllByRid(rid);
-        List<AdminRolePermission> rolePermissions = new ArrayList<>();
-        for (int i = 0; i < perms.size(); i++) {
-            AdminPermission permission = perms.get(i);
-            AdminRolePermission rolePermission = new AdminRolePermission();
-            rolePermission.setPid(permission.getId());
-            rolePermission.setRid(rid);
-            rolePermissions.add(rolePermission);
-        }
-        adminRolePermissionDAO.saveAll(rolePermissions);
+        List<AdminRolePermission> rps = new ArrayList<>();
+        perms.forEach(p -> {
+            AdminRolePermission rp = new AdminRolePermission();
+            rp.setRid(rid);
+            rp.setPid(p.getId());
+            rps.add(rp);
+        });
+        adminRolePermissionDAO.saveAll(rps);
     }
 }
