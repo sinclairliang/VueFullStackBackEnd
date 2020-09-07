@@ -1,7 +1,6 @@
 package com.evan.wj.controller;
 
-import com.evan.wj.result.Result;
-import com.evan.wj.result.ResultFactory;
+import com.evan.wj.pojo.AdminMenu;
 import com.evan.wj.service.AdminMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,8 +16,8 @@ public class MenuController {
 
     @CrossOrigin
     @GetMapping("/api/menu")
-    public Result menu() {
-        return ResultFactory.buildSuccessResult(adminMenuService.getMenusByCurrentUser());
+    public List<AdminMenu> menu() {
+        return adminMenuService.getMenusByCurrentUser();
     }
 
 }

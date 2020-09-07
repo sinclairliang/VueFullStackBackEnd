@@ -36,13 +36,15 @@ public class AdminMenuService {
         User user = userService.getByName(username);
 
         // Get roles' ids of current user.
-        List<Integer> rids = adminUserRoleService.listAllByUid(user.getId())
+        List<Integer> rids = adminUserRoleService
+                .listAllByUid(user.getId())
                 .stream()
                 .map(AdminUserRole::getRid)
                 .collect(Collectors.toList());
 
         // Get menu items of these roles.
-        List<Integer> menuIds = adminRoleMenuService.findAllByRid(rids)
+        List<Integer> menuIds = adminRoleMenuService
+                .findAllByRid(rids)
                 .stream()
                 .map(AdminRoleMenu::getMid)
                 .collect(Collectors.toList());
