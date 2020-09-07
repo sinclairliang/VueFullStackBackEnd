@@ -56,6 +56,9 @@ public class AdminMenuService {
 
         // Adjust the structure of the menu.
         handleMenus(menus);
+        System.out.println("=====================");
+        System.out.println(menus);
+        System.out.println("=====================");
         return menus;
     }
 
