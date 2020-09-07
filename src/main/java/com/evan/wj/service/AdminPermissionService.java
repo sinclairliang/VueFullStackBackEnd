@@ -49,21 +49,32 @@ public class AdminPermissionService {
     }
 
     public List<AdminPermission> listPermsByRoleId(int rid) {
-        List<Integer> pids = adminRolePermissionService.findAllByRid(rid)
-                .stream().map(AdminRolePermission::getPid).collect(Collectors.toList());
+        List<Integer> pids = adminRolePermissionService
+                .findAllByRid(rid)
+                .stream()
+                .map(AdminRolePermission::getPid)
+                .collect(Collectors.toList());
         return adminPermissionDAO.findAllById(pids);
     }
 
     public Set<String> listPermissionURLsByUser(String username) {
-        List<Integer> rids = adminRoleService.listRolesByUser(username)
-                .stream().map(AdminRole::getId).collect(Collectors.toList());
+        List<Integer> rids = adminRoleService
+                .listRolesByUser(username)
+                .stream()
+                .map(AdminRole::getId)
+                .collect(Collectors.toList());
 
-        List<Integer> pids = adminRolePermissionDAO.findAllByRid(rids)
-                .stream().map(AdminRolePermission::getPid).collect(Collectors.toList());
+        List<Integer> pids = adminRolePermissionDAO
+                .findAllByRid(rids)
+                .stream()
+                .map(AdminRolePermission::getPid)
+                .collect(Collectors.toList());
 
         List<AdminPermission> perms = adminPermissionDAO.findAllById(pids);
 
-        Set<String> URLs = perms.stream().map(AdminPermission::getUrl).collect(Collectors.toSet());
+        Set<String> URLs = perms.stream()
+                .map(AdminPermission::getUrl)
+                .collect(Collectors.toSet());
 
         return URLs;
     }

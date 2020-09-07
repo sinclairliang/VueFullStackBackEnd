@@ -51,8 +51,11 @@ public class AdminRoleService {
 
     public List<AdminRole> listRolesByUser(String username) {
         int uid = userService.getByName(username).getId();
-        List<Integer> rids = adminUserRoleService.listAllByUid(uid)
-                .stream().map(AdminUserRole::getRid).collect(Collectors.toList());
+        List<Integer> rids = adminUserRoleService
+                .listAllByUid(uid)
+                .stream()
+                .map(AdminUserRole::getRid)
+                .collect(Collectors.toList());
         return adminRoleDAO.findAllById(rids);
     }
 
