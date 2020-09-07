@@ -29,17 +29,28 @@ public class AdminMenuService {
 
     public List<AdminMenu> getMenusByCurrentUser() {
         // Get current user in DB.
-        String username = SecurityUtils.getSubject().getPrincipal().toString();
+        String username = SecurityUtils
+                .getSubject()
+                .getPrincipal()
+                .toString();
         User user = userService.getByName(username);
 
         // Get roles' ids of current user.
         List<Integer> rids = adminUserRoleService.listAllByUid(user.getId())
-                .stream().map(AdminUserRole::getRid).collect(Collectors.toList());
+                .stream()
+                .map(AdminUserRole::getRid)
+                .collect(Collectors.toList());
 
         // Get menu items of these roles.
         List<Integer> menuIds = adminRoleMenuService.findAllByRid(rids)
-                .stream().map(AdminRoleMenu::getMid).collect(Collectors.toList());
-        List<AdminMenu> menus = adminMenuDAO.findAllById(menuIds).stream().distinct().collect(Collectors.toList());
+                .stream()
+                .map(AdminRoleMenu::getMid)
+                .collect(Collectors.toList());
+        List<AdminMenu> menus = adminMenuDAO
+                .findAllById(menuIds)
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
 
         // Adjust the structure of the menu.
         handleMenus(menus);
@@ -47,8 +58,11 @@ public class AdminMenuService {
     }
 
     public List<AdminMenu> getMenusByRoleId(int rid) {
-        List<Integer> menuIds = adminRoleMenuService.findAllByRid(rid)
-                .stream().map(AdminRoleMenu::getMid).collect(Collectors.toList());
+        List<Integer> menuIds = adminRoleMenuService
+                .findAllByRid(rid)
+                .stream()
+                .map(AdminRoleMenu::getMid)
+                .collect(Collectors.toList());
         List<AdminMenu> menus = adminMenuDAO.findAllById(menuIds);
 
         handleMenus(menus);
