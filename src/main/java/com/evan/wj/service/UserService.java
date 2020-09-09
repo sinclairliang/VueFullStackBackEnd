@@ -39,7 +39,7 @@ public class UserService {
 
     public boolean isExist(String username) {
         User user = userDAO.findByUsername(username);
-        return null != user;
+        return user != null; 
     }
 
     public User getByName(String username) {
@@ -74,7 +74,9 @@ public class UserService {
         String salt = new SecureRandomNumberGenerator().nextBytes().toString();
         int times = 2;
         String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
-
+        
+        System.out.println("Salted password" + encodedPassword);
+        
         user.setSalt(salt);
         user.setPassword(encodedPassword);
 
