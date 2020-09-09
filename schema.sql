@@ -41,11 +41,12 @@ CREATE TABLE `user`
     `username` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
     `password` varchar(255)                                            DEFAULT NULL,
     `salt`     varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `name`     varchar(255)                                            DEFAULT NULL,
+    `enabled`  tinyint(1)                                              DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 110
   DEFAULT CHARSET = utf8;
-
 -- ----------------------------
 -- Table structure for admin_menu
 -- ----------------------------
