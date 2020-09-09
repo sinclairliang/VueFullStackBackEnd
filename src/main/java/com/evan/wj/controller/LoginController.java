@@ -59,7 +59,7 @@ public class LoginController {
         String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
         user.setSalt(salt);
         user.setPassword(encodedPassword);
-        userService.add(user);
+        userService.register(user);
 
         return ResultFactory.buildSuccessResult(user);
     }
