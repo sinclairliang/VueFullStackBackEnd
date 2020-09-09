@@ -1,10 +1,10 @@
 package com.evan.wj.service;
 
 import com.evan.wj.dao.AdminMenuDAO;
-import com.evan.wj.pojo.AdminMenu;
-import com.evan.wj.pojo.AdminRoleMenu;
-import com.evan.wj.pojo.AdminUserRole;
-import com.evan.wj.pojo.User;
+import com.evan.wj.entity.AdminMenu;
+import com.evan.wj.entity.AdminRoleMenu;
+import com.evan.wj.entity.AdminUserRole;
+import com.evan.wj.entity.User;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,13 +41,16 @@ public class AdminMenuService {
                 .stream()
                 .map(AdminUserRole::getRid)
                 .collect(Collectors.toList());
-
+        System.out.println("=====================");
+        System.out.println(rids);
+        System.out.println("=====================");
         // Get menu items of these roles.
         List<Integer> menuIds = adminRoleMenuService
                 .findAllByRid(rids)
                 .stream()
                 .map(AdminRoleMenu::getMid)
                 .collect(Collectors.toList());
+
         List<AdminMenu> menus = adminMenuDAO
                 .findAllById(menuIds)
                 .stream()
@@ -56,9 +59,6 @@ public class AdminMenuService {
 
         // Adjust the structure of the menu.
         handleMenus(menus);
-        System.out.println("=====================");
-        System.out.println(menus);
-        System.out.println("=====================");
         return menus;
     }
 

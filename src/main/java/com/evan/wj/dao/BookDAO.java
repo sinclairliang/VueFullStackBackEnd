@@ -1,7 +1,7 @@
 package com.evan.wj.dao;
 
-import com.evan.wj.pojo.Book;
-import com.evan.wj.pojo.Category;
+import com.evan.wj.entity.Book;
+import com.evan.wj.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

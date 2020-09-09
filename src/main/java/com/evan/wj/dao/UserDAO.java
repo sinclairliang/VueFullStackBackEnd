@@ -1,6 +1,6 @@
 package com.evan.wj.dao;
 
-import com.evan.wj.pojo.User;
+import com.evan.wj.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDAO extends JpaRepository<User, Integer> {

@@ -1,6 +1,6 @@
 package com.evan.wj.dao;
 
-import com.evan.wj.pojo.AdminUserRole;
+import com.evan.wj.entity.AdminUserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

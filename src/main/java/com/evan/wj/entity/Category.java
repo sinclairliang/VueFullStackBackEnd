@@ -1,4 +1,4 @@
-package com.evan.wj.pojo;
+package com.evan.wj.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

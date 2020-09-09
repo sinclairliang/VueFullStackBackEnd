@@ -1,7 +1,7 @@
 package com.evan.wj.service;
 
 import com.evan.wj.dao.AdminRoleMenuDAO;
-import com.evan.wj.pojo.AdminRoleMenu;
+import com.evan.wj.entity.AdminRoleMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;

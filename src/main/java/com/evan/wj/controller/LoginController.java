@@ -1,6 +1,6 @@
 package com.evan.wj.controller;
 
-import com.evan.wj.pojo.User;
+import com.evan.wj.entity.User;
 import com.evan.wj.result.Result;
 import com.evan.wj.result.ResultFactory;
 import com.evan.wj.service.UserService;

@@ -1,7 +1,7 @@
 package com.evan.wj.realm;
 
 
-import com.evan.wj.pojo.User;
+import com.evan.wj.entity.User;
 import com.evan.wj.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

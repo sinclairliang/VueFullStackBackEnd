@@ -1,6 +1,6 @@
 package com.evan.wj.dao;
 
-import com.evan.wj.pojo.AdminMenu;
+import com.evan.wj.entity.AdminMenu;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

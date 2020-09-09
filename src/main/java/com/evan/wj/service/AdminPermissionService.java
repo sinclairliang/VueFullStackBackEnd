@@ -2,8 +2,8 @@ package com.evan.wj.service;
 
 import com.evan.wj.dao.AdminPermissionDAO;
 import com.evan.wj.dao.AdminRolePermissionDAO;
-import com.evan.wj.pojo.*;
-import com.evan.wj.pojo.AdminRolePermission;
+import com.evan.wj.entity.*;
+import com.evan.wj.entity.AdminRolePermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

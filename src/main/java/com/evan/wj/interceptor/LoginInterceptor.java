@@ -1,6 +1,5 @@
 package com.evan.wj.interceptor;
 
-import com.evan.wj.pojo.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 

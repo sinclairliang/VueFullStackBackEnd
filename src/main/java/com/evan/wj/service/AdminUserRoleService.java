@@ -1,8 +1,8 @@
 package com.evan.wj.service;
 
 import com.evan.wj.dao.AdminUserRoleDAO;
-import com.evan.wj.pojo.AdminRole;
-import com.evan.wj.pojo.AdminUserRole;
+import com.evan.wj.entity.AdminRole;
+import com.evan.wj.entity.AdminUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

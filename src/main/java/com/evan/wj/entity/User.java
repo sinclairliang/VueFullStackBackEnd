@@ -1,4 +1,4 @@
-package com.evan.wj.pojo;
+package com.evan.wj.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

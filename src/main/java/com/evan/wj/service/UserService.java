@@ -1,7 +1,7 @@
 package com.evan.wj.service;
 
 import com.evan.wj.dao.UserDAO;
-import com.evan.wj.pojo.User;
+import com.evan.wj.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
