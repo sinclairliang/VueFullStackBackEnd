@@ -80,10 +80,15 @@ public class AdminMenuService {
      * @param menus Menu items list without structure
      */
     public void handleMenus(List<AdminMenu> menus) {
-        menus.forEach(m -> {
+//        menus.forEach(m -> {
+//            List<AdminMenu> children = getAllByParentId(m.getId());
+//            m.setChildren(children);
+//        });
+
+        for (AdminMenu m : menus) {
             List<AdminMenu> children = getAllByParentId(m.getId());
             m.setChildren(children);
-        });
+        }
 
         menus.removeIf(m -> m.getParentId() != 0);
     }
