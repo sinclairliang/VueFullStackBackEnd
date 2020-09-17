@@ -1,8 +1,8 @@
 package com.evan.wj.service;
 
 import com.evan.wj.dao.UserDAO;
-import com.evan.wj.dto.UserDTO;
-import com.evan.wj.entity.AdminRole;
+//import com.evan.wj.dto.UserDTO;
+//import com.evan.wj.entity.AdminRole;
 import com.evan.wj.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +10,8 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.web.util.HtmlUtils;
 
-import java.util.List;
-import java.util.stream.Collectors;
+//import java.util.List;
+//import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -39,7 +39,7 @@ public class UserService {
 
     public boolean isExist(String username) {
         User user = userDAO.findByUsername(username);
-        return user != null; 
+        return user != null;
     }
 
     public User getByName(String username) {
@@ -74,9 +74,9 @@ public class UserService {
         String salt = new SecureRandomNumberGenerator().nextBytes().toString();
         int times = 2;
         String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
-        
+
         System.out.println("Salted password" + encodedPassword);
-        
+
         user.setSalt(salt);
         user.setPassword(encodedPassword);
 
