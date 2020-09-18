@@ -1,8 +1,8 @@
 package com.evan.wj.service;
 
 import com.evan.wj.dao.UserDAO;
-//import com.evan.wj.dto.UserDTO;
-//import com.evan.wj.entity.AdminRole;
+import com.evan.wj.dto.UserDTO;
+import com.evan.wj.entity.AdminRole;
 import com.evan.wj.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +10,8 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.web.util.HtmlUtils;
 
-//import java.util.List;
-//import java.util.stream.Collectors;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -24,18 +24,18 @@ public class UserService {
     @Autowired
     AdminUserRoleService adminUserRoleService;
 
-//    public List<UserDTO> list() {
-//        List<User> users = userDAO.findAll();
-//        List<UserDTO> userDTOS = users
-//                .stream().map(user -> (UserDTO) new UserDTO().convertFrom(user)).collect(Collectors.toList());
-//
-//        userDTOS.forEach(u -> {
-//            List<AdminRole> roles = adminRoleService.listRolesByUser(u.getUsername());
-//            u.setRoles(roles);
-//        });
-//
-//        return userDTOS;
-//    }
+    public List<UserDTO> list() {
+        List<User> users = userDAO.findAll();
+
+        List<UserDTO> userDTOS = users
+                .stream().map(user -> (UserDTO) new UserDTO().convertFrom(user)).collect(Collectors.toList());
+
+        userDTOS.forEach(u -> {
+            List<AdminRole> roles = adminRoleService.listRolesByUser(u.getUsername());
+            u.setRoles(roles);
+        });
+        return userDTOS;
+    }
 
     public boolean isExist(String username) {
         User user = userDAO.findByUsername(username);

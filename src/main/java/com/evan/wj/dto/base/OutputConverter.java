@@ -1,6 +1,9 @@
 package com.evan.wj.dto.base;
 
+import com.evan.wj.entity.AdminRole;
 import org.springframework.lang.NonNull;
+
+import java.util.List;
 
 import static com.evan.wj.utils.BeanUtils.updateProperties;
 
