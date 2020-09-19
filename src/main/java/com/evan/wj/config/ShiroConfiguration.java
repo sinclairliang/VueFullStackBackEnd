@@ -1,5 +1,6 @@
 package com.evan.wj.config;
 
+import com.evan.wj.filter.URLPathMatchingFilter;
 import com.evan.wj.realm.WJRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
@@ -12,6 +13,11 @@ import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 @Configuration
 public class ShiroConfiguration {
     @Bean
@@ -23,14 +29,48 @@ public class ShiroConfiguration {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
+        shiroFilterFactoryBean.setLoginUrl("/nowhere");
+
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
+        Map<String, Filter> customizedFilter = new HashMap<>();
+
+        customizedFilter.put("url", getURLPathMatchingFilter());
+
+        filterChainDefinitionMap.put("/api/authentication", "authc");
+        filterChainDefinitionMap.put("/api/menu", "authc");
+        filterChainDefinitionMap.put("/api/admin/**", "authc");
+
+        filterChainDefinitionMap.put("/api/admin/**", "url");
+
+        shiroFilterFactoryBean.setFilters(customizedFilter);
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
+    }
+
+    public URLPathMatchingFilter getURLPathMatchingFilter() {
+        return new URLPathMatchingFilter();
     }
 
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(getWJRealm());
+        securityManager.setRememberMeManager(rememberMeManager());
         return securityManager;
+    }
+
+    public CookieRememberMeManager rememberMeManager() {
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        cookieRememberMeManager.setCookie(rememberMeCookie());
+        cookieRememberMeManager.setCipherKey("EVANNIGHTLY_WAOU".getBytes());
+        return cookieRememberMeManager;
+    }
+
+    @Bean
+    public SimpleCookie rememberMeCookie() {
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        simpleCookie.setMaxAge(259200);
+        return simpleCookie;
     }
 
     @Bean
@@ -54,19 +94,4 @@ public class ShiroConfiguration {
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }
-
-    public CookieRememberMeManager rememberMeManager() {
-        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
-        cookieRememberMeManager.setCookie(rememberMeCookie());
-        cookieRememberMeManager.setCipherKey("WHATEVER_STRING".getBytes());
-        return cookieRememberMeManager;
-    }
-
-    @Bean
-    public SimpleCookie rememberMeCookie() {
-        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
-        simpleCookie.setMaxAge(259200);
-        return simpleCookie;
-    }
 }
-

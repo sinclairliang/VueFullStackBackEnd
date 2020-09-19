@@ -1,11 +1,8 @@
 package com.evan.wj.dto.base;
 
-import com.evan.wj.entity.AdminRole;
 import org.springframework.lang.NonNull;
 
-import java.util.List;
-
-import static com.evan.wj.utils.BeanUtils.updateProperties;
+import static com.evan.wj.util.BeanUtils.updateProperties;
 
 public interface OutputConverter<DTO extends OutputConverter<DTO, DOMAIN>, DOMAIN> {
 

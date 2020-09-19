@@ -1,4 +1,4 @@
-package com.evan.wj.utils;
+package com.evan.wj.util;
 
 import com.evan.wj.exception.BeanUtilsException;
 import org.springframework.beans.BeanWrapperImpl;
