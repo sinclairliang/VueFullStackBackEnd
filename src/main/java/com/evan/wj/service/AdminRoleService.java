@@ -50,7 +50,7 @@ public class AdminRoleService {
     }
 
     public List<AdminRole> listRolesByUser(String username) {
-        int uid = userService.getByName(username).getId();
+        int uid = userService.findByUsername(username).getId();
         List<Integer> rids = adminUserRoleService
                 .listAllByUid(uid)
                 .stream()

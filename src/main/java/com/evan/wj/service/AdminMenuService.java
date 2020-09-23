@@ -33,7 +33,7 @@ public class AdminMenuService {
                 .getSubject()
                 .getPrincipal()
                 .toString();
-        User user = userService.getByName(username);
+        User user = userService.findByUsername(username);
 
         // Get roles' ids of current user.
         List<Integer> rids = adminUserRoleService

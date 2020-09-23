@@ -17,16 +17,15 @@ import java.util.stream.Collectors;
 public class UserService {
     @Autowired
     UserDAO userDAO;
-
     @Autowired
     AdminRoleService adminRoleService;
-
     @Autowired
     AdminUserRoleService adminUserRoleService;
 
     public List<UserDTO> list() {
         List<User> users = userDAO.findAll();
 
+        // Find all roles in DB to enable JPA persistence context.
         List<UserDTO> userDTOS = users
                 .stream().map(user -> (UserDTO) new UserDTO().convertFrom(user)).collect(Collectors.toList());
 
@@ -34,15 +33,16 @@ public class UserService {
             List<AdminRole> roles = adminRoleService.listRolesByUser(u.getUsername());
             u.setRoles(roles);
         });
+
         return userDTOS;
     }
 
     public boolean isExist(String username) {
         User user = userDAO.findByUsername(username);
-        return user != null;
+        return null != user;
     }
 
-    public User getByName(String username) {
+    public User findByUsername(String username) {
         return userDAO.findByUsername(username);
     }
 
@@ -74,8 +74,6 @@ public class UserService {
         String salt = new SecureRandomNumberGenerator().nextBytes().toString();
         int times = 2;
         String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
-
-        System.out.println("Salted password" + encodedPassword);
 
         user.setSalt(salt);
         user.setPassword(encodedPassword);
@@ -111,6 +109,4 @@ public class UserService {
     public void deleteById(int id) {
         userDAO.deleteById(id);
     }
-
-
 }
